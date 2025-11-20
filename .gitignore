@@ -1,0 +1,17 @@
+# CMake / build folders
+build/
+CMakeFiles/
+*.dir/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Object / library files
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+
+# OS files
+.DS_Store
