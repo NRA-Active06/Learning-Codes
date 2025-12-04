@@ -7,12 +7,6 @@ int main() {
     int target = 0;
     std::string line;
 
-    std::ifstream in("day1.txt");
-    if (!in) {
-        std::cerr << "Could not open the txt\n";
-        return 1;
-    }
-
     while (std::getline(std::cin, line)) {
         if (line.empty()) {
             continue;
