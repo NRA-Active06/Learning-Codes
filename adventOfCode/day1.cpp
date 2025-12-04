@@ -13,7 +13,7 @@ int main() {
     
         char dir = line[0]; //'dir' is shorthand for Direction of the dials turning
         int cycle = std::stoi(line.substr(1)); //string to integer, removes first letter and then turns rest into an integer
-        cycle %= 100; //makes it a range of 0-99 by using the modulus operator
+        cycle %= 100; //makes the input in the range of 0-99 by using the modulus operator --> excess movement isn't needed
 
         if (dir == 'R') {
             position = (position + cycle) % 100; //adds the aforementioned cycle value to the position (the users input)
