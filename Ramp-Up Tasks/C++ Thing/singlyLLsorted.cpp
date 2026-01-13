@@ -1,5 +1,5 @@
 #include <iostream>
-#include "singlyLL.h"
+#include "singlyLLsorted.h"
 
 sLinkedList::sLinkedList() : head(nullptr) {}
 
@@ -11,45 +11,49 @@ void sLinkedList::insert(int value) {
         return;
     }
 
-    Node* temp = head;
-    Node* prev = temp;
-    //loop to get to the last node
-    while (temp->value < newNode->value && temp->next != nullptr)
-    {
-        prev = temp;
-        temp = temp->next;
-    }
 // this handles first position and intermediate position
-    if( temp->next !=nullptr)
-    {
-        prev->next = newNode;
-        if (prev != temp)
-            newNode->next = temp;
+
+    if (value <= head->data) { //if the value is less than the data stored in head
+        newNode->next = head; //move the head over to 'next' as value is added at head / first
+        head = newNode;
+        return;
     }
-    else
+
+    Node* prev = head;
+    Node* current = head->next;
+
+    //loop to get to the last node
+    while (current != nullptr && current->data < value)
     {
-        temp->next = newNode;
+        prev = current;
+        current = current->next;
     }
+
+    newNode->next = current;
+    prev->next = newNode;
 }
 
+/*
 Head & temp - > 1
 newNode -> 10
 insert (5)
-
 newNode --> 5
 Head -> 1 -->10 -->5
+*/
+
 // insert at a position
 //return an appropriate error code which should say invalid position 
 // negative position and out of range position
-void sLinkedList::insertAt(int position, int value) {
-    if (position < 0) return;
+
+bool sLinkedList::insertAt(int position, int value) {
+    if (position < 0) return false;
 
     Node* newNode = new Node{value, nullptr};
 
     if (position == 0) {
         newNode->next = head;
         head = newNode;
-        return;
+        return true;
     }
 
     Node* temp = head;
@@ -59,11 +63,13 @@ void sLinkedList::insertAt(int position, int value) {
 
     if (temp == nullptr) {
         delete newNode;
-        return; //error handling
+        return false; //error handling
     }
 
     newNode->next = temp->next;
     temp->next = newNode;
+    
+    return true;
 }
 
 // delete at a position

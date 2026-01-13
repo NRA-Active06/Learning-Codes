@@ -1,5 +1,5 @@
-#ifndef SINGLYLL_H
-#define SINGLYLL_H
+#ifndef SINGLYLLSORTED_H
+#define SINGLYLLSORTED_H
 
 class sLinkedList {
 private: 
@@ -11,7 +11,7 @@ private:
     Node* head; //head is a pointer to the first node
 
 public:
-    void insertAt(int position, int value);
+    bool insertAt(int position, int value);
     bool deleteAt(int position);
     bool hasloop() const;
     sLinkedList(); //constructor
